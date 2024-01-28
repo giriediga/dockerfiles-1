@@ -1,6 +1,6 @@
-variable "instance_names" {
-  type = list
-  default = ["mongodb","redis","mysql","rabbitmq","catalogue","user","cart","shipping","payment","dispatch","web"]
+variable "isProd" {
+  type = bool
+  default = false  # for false it should provide t2.micro, for true it shoud provide t3.small 
 }
 
 variable "ami_id" {
