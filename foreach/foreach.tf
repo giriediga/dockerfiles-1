@@ -33,7 +33,7 @@ resource "aws_route53_record" "www" {
 
 # we are creating 11 instances using for.each loop, pulic_ip for web and private_ip for rest, t3.small for mongodb, mysql n shipping and t2.micro for rest
 
-# each.value means when itaration (repetation) happens it picks each value like, t3.small, t2.micro etc from var.instance_names in variable.tf
+# each.value means when iteration (repetition) happens it picks each value like, t3.small, t2.micro etc from var.instance_names in variable.tf
 
-# each.key means when itaration (repetation) happens it picks each key like mongodb, web, mysql etc. from var.instance_names in variable.tf
+# each.key means when iteration (repetition) happens it picks each key like mongodb, web, mysql etc. from var.instance_names in variable.tf
   
