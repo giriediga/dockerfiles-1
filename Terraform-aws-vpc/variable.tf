@@ -20,13 +20,13 @@ variable "vpc_tags" {
   default = {} # empty {} means it is optional & If you comment it (ex, # default = {}), means user must provide values. 
 }
 
-# variable "project_name" {
-#   type = string
-# }
+variable "project_name" {
+  type = string
+}
 
-# variable "environment" {
-#   type = string
-# }
+variable "environment" {
+  type = string
+}
 
 # variable "igw_tags" {
 #   type = map

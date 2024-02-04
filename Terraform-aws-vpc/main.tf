@@ -1,15 +1,16 @@
-# code for creating VPC without tags 
-# we are keeping tags as optional here in main.tf n variable.tf . 
-# later in lab2 we will give our own tags codes in varibles.tf in vpc-test folder
+# code for creating VPC with tags 
+# in Lab 1: -we are kept tags as optional in terraform-aws-vpc in main.tf n variable.tf . 
+# Now in lab2: we giving our own tags codes optional in terraform-aws-vpc in main.tf n variable.tf and in varibles.tf in vpc-test folder
 resource "aws_vpc" "main" {
   cidr_block       = var.vpc_cidr
   enable_dns_hostnames = var.enable_dns_hostnames
   tags = merge(
     var.common_tags, 
     var.vpc_tags,
-    # {
-    #     Name = local.name
-    # }
+    {
+       Name = "${var.project_name}-${var.environment}"
+       # Name = local.name
+    }
   )
 }
 
