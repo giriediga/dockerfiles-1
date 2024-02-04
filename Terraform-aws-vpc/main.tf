@@ -1,6 +1,7 @@
-# code for creating VPC with tags 
-# in Lab 1: -we are kept tags as optional in terraform-aws-vpc in main.tf n variable.tf . 
-# Now in lab2: we giving our own tags codes optional in terraform-aws-vpc in main.tf n variable.tf and in varibles.tf in vpc-test folder
+# code for creating VPC with tags, Internet Gateway & attach Int Gtw to VPC 
+# Lab 1: -we are kept tags as optional in terraform-aws-vpc in main.tf n variable.tf . 
+# Now lab2: we giving our own tags codes optional in terraform-aws-vpc in main.tf n variable.tf and in varibles.tf in vpc-test folder
+# Now in lab3: code for creating Internet Gate way
 resource "aws_vpc" "main" {
   cidr_block       = var.vpc_cidr
   enable_dns_hostnames = var.enable_dns_hostnames
@@ -8,23 +9,25 @@ resource "aws_vpc" "main" {
     var.common_tags, 
     var.vpc_tags,
     {
-       Name = "${var.project_name}-${var.environment}"
-       # Name = local.name
+       # Name = "${var.project_name}-${var.environment}" # you can keep this code in Locals
+        Name = local.name # we keeping above code in locals
     }
   )
 }
 
-# resource "aws_internet_gateway" "gw" {
-#   vpc_id = aws_vpc.main.id
+# code for creating Internet Gate way
+resource "aws_internet_gateway" "gw" {
+  vpc_id = aws_vpc.main.id
 
-#   tags = merge(
-#     var.common_tags,
-#     var.igw_tags,
-#     {
-#         Name = local.name
-#     }
-#   )
-# }
+  tags = merge(
+    var.common_tags,
+    var.igw_tags,
+    {
+       # Name = "${var.project_name}-${var.environment}" # you can keep this code in Locals
+       Name = local.name # we keeping above code in locals
+    }
+  )
+}
 
 # resource "aws_subnet" "public" {
 #   count = length(var.public_subnets_cidr)

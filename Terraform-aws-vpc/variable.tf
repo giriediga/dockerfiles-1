@@ -28,10 +28,10 @@ variable "environment" {
   type = string
 }
 
-# variable "igw_tags" {
-#   type = map
-#   default = {}
-# }
+variable "igw_tags" {
+  type = map
+  default = {}
+}
 
 # variable "public_subnets_cidr" {
 #   type = list
