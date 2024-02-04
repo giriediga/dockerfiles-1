@@ -33,17 +33,18 @@ variable "igw_tags" {
   default = {}
 }
 
-# variable "public_subnets_cidr" {
-#   type = list
-#   validation {
-#     condition = length(var.public_subnets_cidr) == 2
-#     error_message = "Please give 2 public valid subnet CIDR"
-#   }
-# }
+variable "public_subnets_cidr" {
+  type = list
+   # writing length function to get list size  == 2 & error message using validation
+  validation {   
+    condition = length(var.public_subnets_cidr) == 2
+    error_message = "Please give 2 public valid subnet CIDR"
+  }
+}
 
-# variable "public_subnets_tags" {
-#   default = {}
-# }
+variable "public_subnets_tags" {
+  default = {}
+}
 
 # variable "private_subnets_cidr" {
 #   type = list

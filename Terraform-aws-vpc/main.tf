@@ -1,3 +1,4 @@
+# using Data-source to fatch get the first 2 AZ
 # code for creating VPC with tags, Internet Gateway & attach Int Gtw to VPC 
 # Lab 1: -we are kept tags as optional in terraform-aws-vpc in main.tf n variable.tf . 
 # Now lab2: we giving our own tags codes optional in terraform-aws-vpc in main.tf n variable.tf and in varibles.tf in vpc-test folder
@@ -29,20 +30,20 @@ resource "aws_internet_gateway" "gw" {
   )
 }
 
-# resource "aws_subnet" "public" {
-#   count = length(var.public_subnets_cidr)
-#   vpc_id     = aws_vpc.main.id
-#   cidr_block = var.public_subnets_cidr[count.index]
-#   availability_zone = local.az_names[count.index]
-#   map_public_ip_on_launch = true
-#   tags = merge(
-#     var.common_tags,
-#     var.public_subnets_tags,
-#     {
-#         Name = "${local.name}-public-${local.az_names[count.index]}"
-#     }
-#   )
-# }
+resource "aws_subnet" "public" {
+  count = length(var.public_subnets_cidr)
+  vpc_id     = aws_vpc.main.id
+  cidr_block = var.public_subnets_cidr[count.index]
+  availability_zone = local.az_names[count.index]
+  map_public_ip_on_launch = true
+  tags = merge(
+    var.common_tags,
+    var.public_subnets_tags,
+    {
+        Name = "${local.name}-public-${local.az_names[count.index]}"
+    }
+  )
+}
 
 
 # resource "aws_subnet" "private" {
